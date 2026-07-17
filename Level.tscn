@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cujdayh77pgri" path="res://Assets/kenney_space-shooter-remastered/Backgrounds/darkPurple.png" id="1_bexhn"]
 [ext_resource type="Script" uid="uid://sabf3fvpdn6r" path="res://level.gd" id="1_t7iv1"]
+[ext_resource type="PackedScene" uid="uid://qmxccnuy5b0q" path="res://Player.tscn" id="3_2nifc"]
 
 [node name="Level" type="Node2D" unique_id=337334236]
 script = ExtResource("1_t7iv1")
@@ -12,3 +13,5 @@ texture_repeat = 2
 texture = ExtResource("1_bexhn")
 region_enabled = true
 region_rect = Rect2(0, 0, 8000, 8000)
+
+[node name="Player" parent="." unique_id=2105080037 instance=ExtResource("3_2nifc")]
