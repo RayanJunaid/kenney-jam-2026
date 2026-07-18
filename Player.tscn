@@ -7,11 +7,10 @@
 motion_mode = 1
 script = ExtResource("1_kpjcp")
 
-[node name="ShipSprite" type="Sprite2D" parent="." unique_id=1532926251]
-rotation = 1.5707964
+[node name="PlayerImage" type="Sprite2D" parent="." unique_id=1532926251]
 texture = ExtResource("1_xhfnw")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=694559975]
 process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 10.0
