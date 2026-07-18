@@ -14,3 +14,9 @@ texture = ExtResource("1_xhfnw")
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="CollisionFront" type="CollisionPolygon2D" parent="." unique_id=336913641]
+polygon = PackedVector2Array(-4, -37, 4, -37, 10, -23, 48, 22, -48, 22, -10, -23)
+
+[node name="CollisionBack" type="CollisionPolygon2D" parent="." unique_id=458149070]
+polygon = PackedVector2Array(-48, 22, -48, 29, -21, 29, -13, 37, 13, 37, 21, 29, 48, 29, 48, 22)
