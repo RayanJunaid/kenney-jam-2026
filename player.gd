@@ -3,7 +3,7 @@ extends CharacterBody2D
 var drag_factor := 0.15
 var acceleration := 500.0
 var decceleration := 222.0
-
+var level: Node2D = null
 
 func _ready() -> void:
 	position = Vector2(640, 360)
@@ -28,6 +28,12 @@ func _physics_process(delta: float) -> void:
 		if velocity.length() > 0.0:
 			velocity -= velocity.normalized() * decceleration * delta
 		
-		
-
 	move_and_slide()
+
+	if level != null:
+		if global_position.x <= level.world_border_left or global_position.x >= level.world_border_right:
+			velocity.x = 0
+		if global_position.y <= level.world_border_top or global_position.y >= level.world_border_bottom:
+			velocity.y = 0
+		global_position.x = clamp(global_position.x, level.world_border_left, level.world_border_right)
+		global_position.y = clamp(global_position.y, level.world_border_top, level.world_border_bottom)
