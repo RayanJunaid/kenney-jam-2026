@@ -1,24 +1,42 @@
-extends CharacterBody2D
+extends Node2D
+
+var speed := 0
+var drag := 10
+var acceleration := 150
+var decceleration := 222
 
 
-const MAX_SPEED = 300.0
-const ACCELERATION = 600.0
-const DECELERATION = 300.0
-const ROTATION_SPEED = PI
+func _ready() -> void:
+	position = Vector2(640, 360)
 
-
-func _physics_process(delta: float) -> void:
-
-	# Get left/right inputs and handle the rotation.
-	var rotation_direction := Input.get_axis("left", "right")
-	rotation += rotation_direction * ROTATION_SPEED * delta
+func _process(delta: float) -> void:
 	
-	# Get up/down inputs and handle acceleration.
-	var move_direction := Input.get_axis("backwards", "forwards")
-	
-	# TO-DO: implement acceleration and velocity based on the direction the ship is facing and make it feel similar to the dpr bored game.
-	# BELOW IS TEMPORARY CODE TO TEST CAMERA, DELETE WHEN MAKING ACTUAL MOVEMENT CODE
-	if Input.is_action_pressed("forwards"): 
-		velocity = velocity.move_toward(Vector2.from_angle(rotation) * move_direction * MAX_SPEED, ACCELERATION*delta)
-	
-	move_and_slide()
+	if speed > 1000:
+		speed = 1000
+
+	if Input.is_action_pressed("forwards"):
+		@warning_ignore("narrowing_conversion")
+		speed += acceleration * delta
+	elif Input.is_action_pressed("backwards"):
+		if speed > 0:
+			@warning_ignore("narrowing_conversion")
+			speed -= decceleration * delta
+	elif speed > drag:
+		@warning_ignore("narrowing_conversion")
+		speed -= drag * delta 
+		
+		
+	if Input.is_action_pressed("left"):
+		if speed > 500:
+			@warning_ignore("integer_division")
+			rotation -= 7 * 500/speed * delta
+		else:
+			rotation -= 7 * delta
+	if Input.is_action_pressed("right"):
+		if speed > 500:
+			@warning_ignore("integer_division")
+			rotation += 7 * 500/speed * delta
+		else:
+			rotation += 7 * delta
+		
+	position += Vector2((speed) * sin(rotation) * delta,(-speed) * cos(rotation) * delta)
