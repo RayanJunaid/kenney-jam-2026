@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cmjjqyy68sb6g" path="res://Assets/kenney_space-shooter-remastered/PNG/playerShip3_red.png" id="1_xhfnw"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2105080037]
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_kpjcp")
 
@@ -20,3 +21,12 @@ polygon = PackedVector2Array(-4, -37, 4, -37, 10, -23, 48, 22, -48, 22, -10, -23
 
 [node name="CollisionBack" type="CollisionPolygon2D" parent="." unique_id=458149070]
 polygon = PackedVector2Array(-48, 22, -48, 29, -21, 29, -13, 37, 13, 37, 21, 29, 48, 29, 48, 22)
+
+[node name="LaserSpawnPoint" type="Marker2D" parent="." unique_id=2064086754]
+position = Vector2(0, -54)
+
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1427139595]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

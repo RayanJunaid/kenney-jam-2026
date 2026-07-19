@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cujdayh77pgri" path="res://Assets/kenney_space-shooter-remastered/Backgrounds/darkPurple.png" id="1_bexhn"]
 [ext_resource type="Script" uid="uid://sabf3fvpdn6r" path="res://level.gd" id="1_t7iv1"]
 [ext_resource type="PackedScene" uid="uid://qmxccnuy5b0q" path="res://Player.tscn" id="3_2nifc"]
+[ext_resource type="PackedScene" uid="uid://bgs85j2k2s531" path="res://HUD.tscn" id="4_wkftn"]
 
 [node name="Level" type="Node2D" unique_id=337334236]
 script = ExtResource("1_t7iv1")
@@ -15,3 +16,20 @@ region_enabled = true
 region_rect = Rect2(0, 0, 8000, 8000)
 
 [node name="Player" parent="." unique_id=2105080037 instance=ExtResource("3_2nifc")]
+
+[node name="Meteors" type="Node2D" parent="." unique_id=369346933]
+
+[node name="Lasers" type="Node2D" parent="." unique_id=225588053]
+
+[node name="MeteorTimer" type="Timer" parent="." unique_id=1515165011]
+autostart = true
+
+[node name="LaserTimer" type="Timer" parent="." unique_id=1890755120]
+one_shot = true
+autostart = true
+
+[node name="HUD" parent="." unique_id=1071369081 instance=ExtResource("4_wkftn")]
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
