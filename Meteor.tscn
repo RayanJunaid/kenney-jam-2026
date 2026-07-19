@@ -24,7 +24,16 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qgwqb"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpdt5"]
+bg_color = Color(1.1288555, 0.35876083, 0.28395167, 0.7764706)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
 [node name="Meteor" type="Area2D" unique_id=1500458139]
+collision_layer = 4
 script = ExtResource("1_d52x0")
 meteor_textures = Array[Texture2D]([ExtResource("2_bpdt5"), ExtResource("3_0h6f2"), ExtResource("4_bu4ei"), ExtResource("5_kstq0"), ExtResource("6_8f51w"), ExtResource("7_i4bvv"), ExtResource("8_a1ni0"), ExtResource("9_vdojw"), ExtResource("10_qlpo1"), ExtResource("11_ryc8j"), ExtResource("12_7cfgf"), ExtResource("13_ygmup"), ExtResource("14_n35bm"), ExtResource("15_atu03"), ExtResource("16_afa6p"), ExtResource("17_n82kw"), ExtResource("18_q61xj"), ExtResource("19_jlfti"), ExtResource("20_bbduy"), ExtResource("21_s7fqm")])
 
@@ -32,3 +41,18 @@ meteor_textures = Array[Texture2D]([ExtResource("2_bpdt5"), ExtResource("3_0h6f2
 
 [node name="CollisionMeteor" type="CollisionShape2D" parent="." unique_id=1634859878]
 shape = SubResource("CircleShape2D_qgwqb")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=731772774]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = 15.0
+offset_right = 28.0
+offset_bottom = 31.0
+grow_vertical = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_bpdt5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

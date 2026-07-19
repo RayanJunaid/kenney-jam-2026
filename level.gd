@@ -3,6 +3,7 @@ extends Node2D
 var background: Sprite2D
 var player: CharacterBody2D
 var camera: Camera2D
+var score: int
 var world_size: Vector2
 var world_border_left: float
 var world_border_right: float
@@ -16,6 +17,7 @@ var can_shoot := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = $Player
+	score = 0
 	camera = $Player/Camera 
 	background = $Background 
 	world_size = $Background.get_rect().size
@@ -40,6 +42,16 @@ func _process(delta: float) -> void:
 			meteor.global_position.y < world_border_top - meteor_spawn_buffer or
 			meteor.global_position.y > world_border_bottom + meteor_spawn_buffer):
 				meteor.queue_free()
+	
+	# despawn lasers
+	for laser in $Lasers.get_children():
+		if (laser.global_position.x < world_border_left - meteor_spawn_buffer or
+			laser.global_position.x > world_border_right + meteor_spawn_buffer or
+			laser.global_position.y < world_border_top - meteor_spawn_buffer or
+			laser.global_position.y > world_border_bottom + meteor_spawn_buffer):
+				laser.queue_free()
+	
+	$HUD/Score.text = "Score: " + str(score)
 
 
 func set_camera_limits(left: float, right: float, top: float, bottom: float):
@@ -55,11 +67,12 @@ func set_camera_limits(left: float, right: float, top: float, bottom: float):
 
 func _on_player_laser(pos: Variant) -> void:
 	if can_shoot == true:
+		can_shoot = false
 		var laser = laser_scene.instantiate()
 		laser.global_position = pos
 		laser.rotation = $Player.rotation
 		$Lasers.add_child(laser)
-		can_shoot = false
+		$LaserTimer.start()
 
 
 func _on_meteor_timer_timeout() -> void:
@@ -80,11 +93,16 @@ func _on_meteor_timer_timeout() -> void:
 		
 
 	var meteor = meteor_scene.instantiate()
+	meteor.health_signal.connect(_on_health_signal)
 	var trajectory = spawn_pos.direction_to(camera.global_position)
 	trajectory = trajectory.rotated(randf_range(-0.5, 0.5))
 	meteor.global_position = spawn_pos
 	meteor.trajectory = trajectory
 	$Meteors.add_child(meteor)
+
+
+func _on_health_signal(health: Variant) -> void:
+	score += health
 
 
 func _on_laser_timer_timeout() -> void:
