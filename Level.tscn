@@ -15,3 +15,17 @@ region_enabled = true
 region_rect = Rect2(0, 0, 8000, 8000)
 
 [node name="Player" parent="." unique_id=2105080037 instance=ExtResource("3_2nifc")]
+
+[node name="Meteors" type="Node2D" parent="." unique_id=369346933]
+
+[node name="Lasers" type="Node2D" parent="." unique_id=225588053]
+
+[node name="MeteorTimer" type="Timer" parent="." unique_id=1515165011]
+autostart = true
+
+[node name="laserTimer" type="Timer" parent="." unique_id=1890755120]
+autostart = true
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="timeout" from="laserTimer" to="." method="_on_laser_timer_timeout"]

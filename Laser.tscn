@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dgeedpr5g6iaa"]
+
+[ext_resource type="Texture2D" uid="uid://bucta3nif2cob" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed02.png" id="1_a3a2b"]
+[ext_resource type="Texture2D" uid="uid://v0aq1xv3xo1i" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed03.png" id="2_klg7v"]
+[ext_resource type="Texture2D" uid="uid://btccr3fngnbir" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed06.png" id="3_n78cf"]
+[ext_resource type="Texture2D" uid="uid://b6hubwcem2nmm" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed07.png" id="4_gyh6v"]
+[ext_resource type="Texture2D" uid="uid://b0jfe6mac40ub" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed04.png" id="5_ms282"]
+[ext_resource type="Texture2D" uid="uid://cmt42mws8e8ct" path="res://Assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed05.png" id="6_uvjh8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qgwqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a3a2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_klg7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n78cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gyh6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ms282")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uvjh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ms282")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uvjh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n78cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gyh6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_klg7v")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgwqb"]
+radius = 5.0
+height = 36.0
+
+[node name="Laser" type="Area2D" unique_id=607616560]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1422475095]
+sprite_frames = SubResource("SpriteFrames_qgwqb")
+autoplay = "default"
+frame_progress = 0.05754692
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=94735055]
+shape = SubResource("CapsuleShape2D_qgwqb")

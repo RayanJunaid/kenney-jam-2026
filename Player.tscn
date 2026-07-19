@@ -20,3 +20,6 @@ polygon = PackedVector2Array(-4, -37, 4, -37, 10, -23, 48, 22, -48, 22, -10, -23
 
 [node name="CollisionBack" type="CollisionPolygon2D" parent="." unique_id=458149070]
 polygon = PackedVector2Array(-48, 22, -48, 29, -21, 29, -13, 37, 13, 37, 21, 29, 48, 29, 48, 22)
+
+[node name="LaserSpawnPoint" type="Marker2D" parent="." unique_id=2064086754]
+position = Vector2(0, -54)

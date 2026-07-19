@@ -4,11 +4,15 @@ var drag_factor := 0.15
 var acceleration := 500.0
 var decceleration := 222.0
 var level: Node2D = null
+signal laser(pos)
 
 func _ready() -> void:
 	position = Vector2(640, 360)
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("shoot"):
+		laser.emit($LaserSpawnPoint.global_position)
+	
 	if Input.is_action_pressed("left"):
 		if velocity.length() > 500:
 			rotation -= 7 * 500/velocity.length() * delta
