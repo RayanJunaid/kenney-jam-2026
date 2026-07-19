@@ -1,1 +1,1 @@
-# kenney-jam-2026
+# a space shooter game made using godot
